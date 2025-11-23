@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Mohammed Fasal PP | Game Developer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-alt: #0f172a;
+      --accent: #38bdf8;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --card: #020617;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #1e293b 0, #020617 50%, #000 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 1.5rem;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0 2rem;
+    }
+
+    header h1 {
+      font-size: 1.25rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    nav a {
+      margin-left: 1rem;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1.2fr);
+      gap: 2rem;
+      align-items: center;
+      padding: 2.5rem 0 3rem;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.2rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+      backdrop-filter: blur(6px);
+      background: rgba(15, 23, 42, 0.8);
+    }
+
+    .hero-title {
+      font-size: clamp(2.2rem, 4vw, 3rem);
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-title span {
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 30rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary,
+    .btn-ghost {
+      border-radius: 999px;
+      padding: 0.6rem 1.2rem;
+      font-size: 0.9rem;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .btn-primary {
+      background: linear-gradient(to right, #0ea5e9, #22c55e);
+      color: #0b1120;
+      font-weight: 600;
+      box-shadow: 0 12px 30px rgba(56, 189, 248, 0.35);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 16px 40px rgba(56, 189, 248, 0.45);
+    }
+
+    .btn-ghost {
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--muted);
+      border-color: rgba(148, 163, 184, 0.5);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    .hero-right {
+      justify-self: center;
+    }
+
+    .hero-card {
+      width: 100%;
+      max-width: 280px;
+      aspect-ratio: 3 / 4;
+      border-radius: 1.5rem;
+      background: radial-gradient(circle at top, #38bdf8 0, #0f172a 45%, #020617 100%);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      padding: 1.2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .hero-card-title {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: rgba(15, 23, 42, 0.9);
+      font-weight: 700;
+    }
+
+    .hero-card-main {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-top: 0.5rem;
+    }
+
+    .hero-card-tag {
+      font-size: 0.75rem;
+      color: rgba(15, 23, 42, 0.85);
+      margin-top: 0.3rem;
+    }
+
+    .hero-card-chip {
+      font-size: 0.75rem;
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(15, 23, 42, 0.3);
+      background: rgba(241, 245, 249, 0.9);
+      color: #020617;
+      align-self: flex-start;
+    }
+
+    .section {
+      padding: 2.5rem 0;
+    }
+
+    .section-title {
+      font-size: 1.2rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .section-subtitle {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .about-text {
+      font-size: 0.95rem;
+      color: var(--muted);
+      max-width: 40rem;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .chip {
+      font-size: 0.8rem;
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      color: var(--muted);
+      background: rgba(15, 23, 42, 0.7);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      border-radius: 1rem;
+      background: linear-gradient(145deg, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.4));
+      border: 1px solid rgba(30, 64, 175, 0.8);
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-pill {
+      font-size: 0.75rem;
+      padding: 0.2rem 0.65rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      color: var(--muted);
+      align-self: flex-start;
+    }
+
+    .project-title {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .project-desc {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .project-meta {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    .project-links {
+      margin-top: 0.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      font-size: 0.8rem;
+    }
+
+    .project-tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.3rem;
+    }
+
+    .project-tag {
+      font-size: 0.75rem;
+      padding: 0.15rem 0.55rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(55, 65, 81, 0.8);
+      color: var(--muted);
+    }
+
+    .contact-card {
+      border-radius: 1rem;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(30, 64, 175, 0.8);
+      padding: 1.25rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .contact-item {
+      margin-bottom: 0.5rem;
+    }
+
+    .footer {
+      padding: 2rem 0 1rem;
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-right {
+        order: -1;
+      }
+
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+      }
+
+      nav {
+        display: flex;
+        flex-wrap: wrap;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>MOHAMMED FASAL PP</h1>
+      <nav>
+        <a href="#projects">Games</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <!-- HERO -->
+      <section class="hero">
+        <div>
+          <div class="hero-badge">
+            <span>🎮 Game Developer</span>
+            <span>Unity • C#</span>
+          </div>
+          <h2 class="hero-title">
+  I Build Fast, Responsive, <span>Gameplay-Driven</span> Experiences in Unity.
+</h2>
+<p class="hero-sub">
+  Jet shooters, FPS zombie survival, and stealth projects—crafted with tight controls,
+  polished feedback, and satisfying combat.
+</p>
+          <div class="hero-buttons">
+            <a href="#projects" class="btn-primary">View My Games →</a>
+            <a href="#contact" class="btn-ghost">Contact Me</a>
+          </div>
+        </div>
+
+        <div class="hero-right">
+          <div class="hero-card">
+            <div>
+              <div class="hero-card-title">Current Focus</div>
+              <div class="hero-card-main">First Person Shooter</div>
+              <div class="hero-card-tag">Unity • C# • AI • Weapons</div>
+            </div>
+            <div class="hero-card-chip">Available for junior roles & internships</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROJECTS -->
+      <section id="projects" class="section">
+        <h3 class="section-title">Games & Projects</h3>
+        <p class="section-subtitle">
+          A selection of my Unity projects. More details and builds can be shared on request.
+        </p>
+
+        <div class="projects-grid">
+          <!-- PROJECT 1 -->
+          <article class="project-card">
+            <div class="project-pill">3D Jet Shooter</div>
+            <h4 class="project-title">Territory Strike: Jet Assault</h4>
+            <p class="project-desc">
+              A fast-paced 3D jet game where entering enemy territory triggers coordinated enemy fire.
+              The player can dodge bullets using timing and movement, or destroy enemy jets first.
+            </p>
+            <p class="project-meta">
+              Features: enemy AI patterns, timeline-based events, multiple playable jet models.
+            </p>
+            <div class="project-tag-row">
+              <span class="project-tag">Unity</span>
+              <span class="project-tag">C#</span>
+              <span class="project-tag">Timeline</span>
+<span class="project-tag">Particle System</span>
+              <span class="project-tag">3D Gameplay</span>
+            </div>
+            <div class="project-links">
+              <!-- Replace the # with actual links when you have builds -->
+              <!-- <a href="#" target="_blank">▶ Play Build</a> -->
+               <a href="https://github.com/Fasalpp/Territory-Strike-Jet-Assault.git" target="_blank">GitHub Repo</a> 
+<a href="projects/jet-shooter.html">View details →</a>
+            </div>
+          </article>
+
+          <!-- PROJECT 2 -->
+          <article class="project-card">
+  <div class="project-pill">First Person Shooter</div>
+  <h4 class="project-title">Outbreak: Dead Zone</h4>
+  <p class="project-desc">
+    A fast-paced zombie shooter where players survive against waves of infected and push
+    their highscore higher each run.
+  </p>
+  <p class="project-meta">
+    Features: Raycast weapon system, Ammo Mechanics, Enemy Health, Score & Highscore System,
+    and Responsive FPS controls.
+  </p>
+  <div class="project-tag-row">
+    <span class="project-tag">Unity</span>
+    <span class="project-tag">C#</span>
+    <span class="project-tag">FPS</span>
+    <span class="project-tag">Highscore</span>
+    <span class="project-tag">Enemy AI</span>
+    <span class="project-tag">Weapon System</span>
+  </div>
+  <div class="project-links">
+    <a href="projects/fps-game.html">View details →</a>
+  </div>
+</article>
+
+          <!-- PROJECT 3 -->
+          <!-- <article class="project-card">
+            <div class="project-pill">Zombie Survival</div>
+            <h4 class="project-title">[Zombie Island Project]</h4>
+            <p class="project-desc">
+              Story-driven survival concept on an abandoned island city: search for weapons, explore a hidden lab,
+              restore power to a radio station and send a distress signal.
+            </p>
+            <p class="project-meta">
+              Focus on narrative flow, level layout and mission structure.
+            </p>
+            <div class="project-tag-row">
+              <span class="project-tag">Unity</span>
+              <span class="project-tag">Level Design</span>
+              <span class="project-tag">Narrative</span>
+            </div>
+<div class="project-links">
+    <a href="projects/jet-shooter.html">View details →</a>
+  </div>
+
+          </article> -->
+
+         <!-- PROJECT 4 -->
+<article class="project-card">
+  <div class="project-pill">UFO Obstacle Runner</div>
+  <h4 class="project-title">Stellar Drift: UFO Escape</h4>
+  <p class="project-desc">
+    A fast-paced UFO flying game where players maneuver through dangerous obstacle zones.
+    The first level features laser grids, moving doors, and tight spaces, while the
+    second level takes the player into open space filled with small asteroids and
+    unpredictable movement patterns.
+  </p>
+  <p class="project-meta">
+    Features: two unique levels, obstacle patterns, UFO physics, laser traps, moving 
+    platforms, and asteroid dodging.
+  </p>
+  <div class="project-tag-row">
+    <span class="project-tag">Unity</span>
+    <span class="project-tag">C#</span>
+    <span class="project-tag">Obstacle Game</span>
+    <span class="project-tag">Space Theme</span>
+  </div>
+  <div class="project-links">
+    <a href="projects/ufo-game.html">View details →</a>
+  </div>
+</article>
+        </div>
+      </section>
+
+      <!-- ABOUT -->
+<section id="about" class="section">
+  <h3 class="section-title">About Me</h3>
+  <p class="about-text">
+    I'm Mohammed Fasal, a Unity game developer from Kerala with a background in BCA and
+    hands-on experience creating gameplay-focused 3D projects. I specialize in building
+    responsive FPS mechanics, enemy AI, weapon systems, and level designs that support
+    fast-paced action and smooth player experience.  
+    <br><br>
+    I enjoy experimenting with new ideas, improving game feel through iteration, and 
+    turning small concepts into complete, playable prototypes. My goal is to develop fun,
+    polished, and engaging gameplay that challenges players and keeps them coming back.
+  </p>
+
+  <div class="chips">
+    <span class="chip">Unity Engine</span>
+    <span class="chip">C#</span>
+    <span class="chip">Gameplay Programming</span>
+    <span class="chip">Enemy AI</span>
+    <span class="chip">Weapon Systems</span>
+    <span class="chip">Level Design</span>
+    <span class="chip">Game UI / UX</span>
+    <span class="chip">Single-Player Prototypes</span>
+  </div>
+</section>
+
+
+      <!-- CONTACT -->
+      <section id="contact" class="section">
+        <h3 class="section-title">Contact</h3>
+        <p class="section-subtitle">
+          Want to talk about a junior position, internship, or collaboration? Reach out:
+        </p>
+        <div class="contact-card">
+          <div class="contact-item">
+            <strong>Email:</strong> <a href="mailto:mohammedfasal034@gmail.com">mohammedfasal034@gmail.com</a>
+          </div>
+          <div class="contact-item">
+            <strong>Location:</strong> Kerala, India
+          </div>
+          <!-- Add these when you have them -->
+           <div class="contact-item">
+            <strong>GitHub:</strong> <a href="https://github.com/Fasalpp" target="_blank">github.com/FasalPP</a>
+          </div>
+          <!-- <div class="contact-item">
+            <strong>Itch.io:</strong> <a href="#" target="_blank">yourname.itch.io</a>
+          </div> -->
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      © <span id="year"></span> Mohammed Fasal. Built with HTML &amp; CSS.
+    </footer>
+  </div>
+
+  <script>
+    // Set current year in footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
